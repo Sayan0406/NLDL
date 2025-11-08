@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module I: Deep Learning Fundamentals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+            line-height: 1.6;
+        }
+        .document-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #1e3a8a; /* Dark Blue for headings */
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+        /* Custom print styles for better document look */
+        @media print {
+            body {
+                background: white;
+            }
+            .document-container {
+                box-shadow: none;
+                margin: 0;
+                max-width: none;
+                width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document-container">
+        
+        <h1 class="text-3xl font-extrabold mb-2 text-center">Module I: Deep Learning Fundamentals</h1>
+        <p class="text-center text-gray-500 mb-8">PEC-CS702A</p>
+
+        <p class="text-gray-700 mb-8"><strong>Course Focus:</strong> This module establishes the theoretical foundation for Deep Learning (DL), exploring its mathematical origins and current challenges.</p>
+
+        <hr class="mb-8">
+
+        <!-- 1. Problems, Perspectives, and Core Issues -->
+        <h2 class="text-2xl font-bold mb-4 border-b pb-2">1. Problems, Perspectives, and Core Issues</h2>
+        <p class="text-gray-700 mb-6">Deep Learning models are immensely powerful but face both technical hurdles and ethical scrutiny.</p>
+
+        <h3 class="text-xl font-semibold mb-3">1.1 Technical Challenges (The Optimization & Data Hurdles)</h3>
+        <table class="mb-8 text-sm">
+            <thead>
+                <tr>
+                    <th>Issue</th>
+                    <th>Explanation in Simple Terms</th>
+                    <th>Mitigation Strategy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-medium"><strong>Data Hunger & Quality</strong></td>
+                    <td>Deep Neural Networks (DNNs) need huge volumes of labeled, accurate data to learn well. If the data is scarce or poor quality, the model fails to generalize.</td>
+                    <td><strong>Data Augmentation</strong> (artificially expanding data, e.g., rotating images), <strong>Transfer Learning</strong> (using pre-trained models).</td>
+                </tr>
+                <tr>
+                    <td class="font-medium"><strong>Vanishing / Exploding Gradients</strong></td>
+                    <td>During training (backpropagation), the "signal" used to adjust the weights can become too small (vanishing) in early layers or too large (exploding), which stops or destabilizes learning.</td>
+                    <td>Using activation functions like <strong>ReLU</strong>; techniques like <strong>Batch Normalization</strong> and <strong>Gradient Clipping</strong>.</td>
+                </tr>
+                <tr>
+                    <td class="font-medium"><strong>Overfitting / Underfitting</strong></td>
+                    <td><strong>Overfitting:</strong> The model memorizes noise in the training data, failing on new examples. <strong>Underfitting:</strong> The model is too simple and cannot even learn the training data patterns.</td>
+                    <td><strong>Regularization (L1/L2)</strong> to penalize complex models; <strong>Dropout</strong> to randomly disable neurons; <strong>Early Stopping</strong>.</td>
+                </tr>
+                <tr>
+                    <td class="font-medium"><strong>Local Minima / Saddle Points</strong></td>
+                    <td>The optimization algorithm (Gradient Descent) gets trapped in a sub-optimal solution ("valley") or a flat region ("saddle point"), preventing it from finding the best possible model.</td>
+                    <td>Using advanced <strong>Optimizers</strong> like <strong>Adam</strong> or <strong>RMSprop</strong> that use momentum to "jump" out of these traps.</td>
+                </tr>
+                <tr>
+                    <td class="font-medium"><strong>Computational Cost</strong></td>
+                    <td>Training state-of-the-art deep models requires specialized, expensive hardware (GPUs/TPUs) and high energy consumption.</td>
+                    <td><strong>Model Optimization</strong> (pruning, quantization), leveraging scalable <strong>Cloud Computing</strong> resources.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3 class="text-xl font-semibold mb-3">1.2 Societal and Ethical Issues</h3>
+        <table class="mb-8 text-sm">
+            <thead>
+                <tr>
+                    <th>Issue</th>
+                    <th>Description</th>
+                    <th>Research Direction</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-medium"><strong>Lack of Interpretability</strong></td>
+                    <td>DNNs are "black boxes"; it's hard to explain *why* a specific decision was made, reducing trust in critical applications (medicine, finance).</td>
+                    <td><strong>Explainable AI (XAI)</strong> methods (SHAP, LIME) aimed at providing local, post-hoc explanations for predictions.</td>
+                </tr>
+                <tr>
+                    <td class="font-medium"><strong>Bias and Fairness</strong></td>
+                    <td>Models learn and amplify existing biases present in the training data (e.g., gender, race bias), leading to unfair or discriminatory predictions.</td>
+                    <td><strong>Data Auditing</strong> and <strong>Fairness-Aware ML</strong> techniques to mitigate bias across different demographic groups.</td>
+                </tr>
+                <tr>
+                    <td class="font-medium"><strong>Adversarial Attacks</strong></td>
+                    <td>A malicious agent makes tiny, imperceptible changes to input data (e.g., an image) that causes the model to make a critical, false prediction.</td>
+                    <td><strong>Adversarial Training</strong> to make models more robust against these security flaws.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 2. Review of Fundamental Learning Techniques -->
+        <h2 class="text-2xl font-bold mb-4 border-b pb-2">2. Review of Fundamental Learning Techniques</h2>
+        <p class="text-gray-700 mb-6">Deep Learning builds upon the three core paradigms of Machine Learning.</p>
+
+        <h3 class="text-xl font-semibold mb-3">2.1 Supervised Learning</h3>
+        <ul class="list-disc list-inside ml-4 text-gray-700 space-y-2 mb-6">
+            <li><strong>Concept:</strong> Learning with a labeled dataset ($X \rightarrow Y$). The goal is to map input to a known, correct output.</li>
+            <li><strong>Analogy:</strong> A student learning with an answer key.</li>
+            <li><strong>Core Tasks:</strong> <strong>Classification</strong> (predicting a category) and <strong>Regression</strong> (predicting a continuous value).</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mb-3">2.2 Unsupervised Learning</h3>
+        <ul class="list-disc list-inside ml-4 text-gray-700 space-y-2 mb-6">
+            <li><strong>Concept:</strong> Finding hidden structures and patterns in unlabeled data ($X$) without a target output.</li>
+            <li><strong>Analogy:</strong> A detective finding clues and organizing them.</li>
+            <li><strong>Core Tasks:</strong> <strong>Clustering</strong> (grouping similar data points) and <strong>Dimensionality Reduction</strong> (simplifying data features).</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mb-3">2.3 Reinforcement Learning (RL)</h3>
+        <ul class="list-disc list-inside ml-4 text-gray-700 space-y-2 mb-6">
+            <li><strong>Concept:</strong> An <strong>Agent</strong> learns a sequence of actions in an <strong>Environment</strong> to maximize a long-term <strong>Reward</strong> through trial and error.</li>
+            <li><strong>Analogy:</strong> Training a dog with treats.</li>
+            <li><strong>Deep Learning Connection:</strong> <strong>Deep RL</strong> uses neural networks (DNNs) to define the agent's strategy or "Policy."</li>
+        </ul>
+
+        <!-- 3. Feedforward Neural Network (FNN) / Multi-Layer Perceptron (MLP) -->
+        <h2 class="text-2xl font-bold mb-4 border-b pb-2">3. Feedforward Neural Network (FNN) / Multi-Layer Perceptron (MLP)</h2>
+        <p class="text-gray-700 mb-6">The FNN is the foundational network architecture where information moves strictly in one direction (forward).</p>
+
+        <h3 class="text-xl font-semibold mb-3">3.1 The Artificial Neuron (Perceptron)</h3>
+        <p class="text-gray-700 mb-4">The basic computational unit:</p>
+        <ol class="list-decimal list-inside ml-4 text-gray-700 space-y-2 mb-6">
+            <li><strong>Inputs ($x_i$):</strong> Data features passed to the neuron.</li>
+            <li><strong>Weights ($w_i$):</strong> Factors representing the importance of each input.</li>
+            <li><strong>Bias ($b$):</strong> A constant term added to the sum, allowing the activation function to shift.</li>
+            <li><strong>Net Input ($z$):</strong> The weighted sum of inputs plus the bias.
+                <div class="bg-gray-100 p-2 rounded-md my-1 text-sm font-mono text-center">z = (Σ wᵢ xᵢ) + b</div>
+            </li>
+            <li><strong>Activation ($a$):</strong> The net input ($z$) is passed through an <strong>Activation Function</strong> ($f$) to produce the neuron's output.
+                <div class="bg-gray-100 p-2 rounded-md my-1 text-sm font-mono text-center">a = f(z)</div>
+            </li>
+        </ol>
+
+        <h3 class="text-xl font-semibold mb-3">3.2 Network Structure</h3>
+        <ul class="list-disc list-inside ml-4 text-gray-700 space-y-2 mb-6">
+            <li><strong>Input Layer:</strong> Receives the raw data.</li>
+            <li><strong>Hidden Layer(s):</strong> Performs the complex feature extraction. The term "<strong>Deep</strong>" refers to networks having many hidden layers.</li>
+            <li><strong>Output Layer:</strong> Generates the final prediction (e.g., class probabilities, single value).</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mb-3">3.3 Key Activation Functions (AFs)</h3>
+        <p class="text-gray-700 mb-4">AFs introduce <strong>non-linearity</strong> to the network, which is essential for solving complex, non-linear problems.</p>
+        
+        <table class="mb-8 text-sm">
+            <thead>
+                <tr>
+                    <th>Function</th>
+                    <th>Formula</th>
+                    <th>Range</th>
+                    <th>Key Use</th>
+                    <th>Problem to Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="font-medium"><strong>Rectified Linear Unit (ReLU)</strong></td>
+                    <td class="font-mono text-xs">f(z) = max(0, z)</td>
+                    <td>[0, ∞)</td>
+                    <td><strong>Hidden Layers</strong> (primary choice due to simplicity and speed).</td>
+                    <td>Can suffer from the "Dying ReLU" problem where neurons become permanently inactive.</td>
+                </tr>
+                <tr>
+                    <td class="font-medium"><strong>Sigmoid (Logistic)</strong></td>
+                    <td class="font-mono text-xs">σ(z) = 1 / (1 + e⁻ᶻ)</td>
+                    <td>(0, 1)</td>
+                    <td><strong>Output Layer</strong> for binary classification (outputs a probability).</td>
+                    <td>Causes the **vanishing gradient problem** in deep hidden layers.</td>
+                </tr>
+                <tr>
+                    <td class="font-medium"><strong>Hyperbolic Tangent (Tanh)</strong></td>
+                    <td class="font-mono text-xs">tanh(z) = (eᶻ - e⁻ᶻ) / (eᶻ + e⁻ᶻ)</td>
+                    <td>(-1, 1)</td>
+                    <td><strong>Hidden Layers</strong> (better than Sigmoid because its output is **zero-centered**).</td>
+                    <td>Still susceptible to the vanishing gradient problem.</td>
+                </tr>
+                <tr>
+                    <td class="font-medium"><strong>Softmax</strong></td>
+                    <td class="font-mono text-xs">P(y=j|z) = eᶻʲ / Σ eᶻᵏ</td>
+                    <td>(0, 1)</td>
+                    <td><strong>Output Layer</strong> for multi-class classification. Converts raw scores into a probability distribution.</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>
